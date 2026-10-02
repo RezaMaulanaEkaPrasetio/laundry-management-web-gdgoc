@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-  variable: "--font-plus-jakarta-sans",
-});
 
 export const metadata: Metadata = {
   title: "LaundryKu - POS & Manajemen Laundry",
@@ -23,6 +15,13 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
+        {/* Plus Jakarta Sans — loaded at runtime via CDN */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
         {/* Material Symbols Outlined Icons */}
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -30,7 +29,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${plusJakartaSans.className} bg-background font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col`}
+        className="font-sans bg-[#F8FAFC] antialiased min-h-screen flex flex-col"
       >
         {children}
       </body>

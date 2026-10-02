@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  KASIR
+  PETUGAS_CUCI
+  KURIR
+  PENGGUNA
+}
+
+enum OrderStatus {
+  MENUNGGU_PENJEMPUTAN
+  SUDAH_DIJEMPUT
+  SEDANG_DICUCI
+  SELESAI_DICUCI
+  SIAP_DIANTAR
+  MENUNGGU_PEMBAYARAN
+  SELESAI
+  DIBATALKAN
+}
+
+enum PaymentMethod {
+  QRIS
+  TUNAI
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+}
+
+enum ServiceType {
+  CKL
+  CKG
+}
+
+enum ServiceSpeed {
+  REGULER
+  EXPRESS
+  KILAT
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role
+  phone     String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  kasirOrders   Order[]        @relation("KasirOrders")
+  kurirOrders   Order[]        @relation("KurirOrders")
+  petugasOrders Order[]        @relation("PetugasOrders")
+  servicePrices ServicePrice[]
+  statusLogs    StatusLog[]
+}
+
+model Order {
+  id                String        @id @default(cuid())
+  orderCode         String        @unique
+  customerName      String
+  customerPhone     String
+  pickupAddress     String
+  deliveryAddress   String
+  serviceType       ServiceType   @default(CKL)
+  serviceSpeed      ServiceSpeed  @default(REGULER)
+  scheduledPickupAt DateTime?
+  notes             String?
+  pocketChecked     Boolean       @default(false)
+  bagReturned       Boolean       @default(false)
+  weightKg          Decimal?
+  pricePerKg        Decimal?
+  totalAmount       Decimal?
+  paymentMethod     PaymentMethod?
+  paymentStatus     PaymentStatus @default(UNPAID)
+  status            OrderStatus   @default(MENUNGGU_PENJEMPUTAN)
+  kasirId           String
+  kurirId           String?
+  petugasId         String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  kasir      User        @relation("KasirOrders", fields: [kasirId], references: [id])
+  kurir      User?       @relation("KurirOrders", fields: [kurirId], references: [id])
+  petugas    User?       @relation("PetugasOrders", fields: [petugasId], references: [id])
+  statusLogs StatusLog[]
+
+  @@index([status])
+  @@index([kasirId])
+  @@index([kurirId])
+  @@index([orderCode])
+}
+
+model ServicePrice {
+  id           String       @id @default(cuid())
+  serviceType  ServiceType
+  serviceSpeed ServiceSpeed
+  pricePerKg   Decimal
+  updatedAt    DateTime     @updatedAt
+  updatedById  String
+  updatedBy    User         @relation(fields: [updatedById], references: [id])
+
+  @@unique([serviceType, serviceSpeed])
+}
+
+model StatusLog {
+  id          String       @id @default(cuid())
+  orderId     String
+  statusFrom  OrderStatus?
+  statusTo    OrderStatus
+  changedById String
+  changedAt   DateTime     @default(now())
+  notes       String?
+
+  order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  changedBy User  @relation(fields: [changedById], references: [id])
+}

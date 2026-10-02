@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════
+   LaundryKu Mascot — Animation Module
+   CSS-only animations for interactive SVG character.
+   ═══════════════════════════════════════════════════ */
+
+/* ─── Entry Animation ─── */
+.container {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: entryFade 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+@keyframes entryFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Right Arm (Waving Arm) ─── */
+.rightArm {
+  transform-origin: 152px 146px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* WELCOME state — full wave greeting (plays once) */
+.wave {
+  animation: waveHello 2s cubic-bezier(0.34, 1.2, 0.64, 1) 0.6s both;
+}
+
+@keyframes waveHello {
+  0%   { transform: rotate(0deg); }
+  12%  { transform: rotate(-70deg); }
+  24%  { transform: rotate(-50deg); }
+  36%  { transform: rotate(-68deg); }
+  48%  { transform: rotate(-52deg); }
+  60%  { transform: rotate(-65deg); }
+  80%  { transform: rotate(-30deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* SUCCESS state — small celebratory wave */
+.successWave {
+  animation: successGesture 1s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+}
+
+@keyframes successGesture {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-60deg); }
+  50%  { transform: rotate(-45deg); }
+  75%  { transform: rotate(-55deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* ─── Head Group (for error tilt) ─── */
+.headGroup {
+  transform-origin: 110px 128px;
+  transition: transform 0.4s ease;
+}
+
+.headTilt {
+  animation: tiltReaction 0.7s ease-in-out both;
+}
+
+@keyframes tiltReaction {
+  0%   { transform: rotate(0deg) translateY(0); }
+  35%  { transform: rotate(3deg) translateY(1px); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+
+/* ─── Decorative Floating Bubbles ─── */
+.bubble1 {
+  animation: floatA 5s ease-in-out infinite;
+}
+.bubble2 {
+  animation: floatB 6s ease-in-out 1s infinite;
+}
+.bubble3 {
+  animation: floatC 4.5s ease-in-out 0.5s infinite;
+}
+.bubble4 {
+  animation: floatA 5.5s ease-in-out 2s infinite;
+}
+
+@keyframes floatA {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-7px) scale(1.05); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-5px) scale(0.95); }
+}
+@keyframes floatC {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+
+/* ─── Eye Blink (idle only, subtle) ─── */
+.blinkEye {
+  animation: blink 4s ease-in-out 3s;
+}
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95%           { transform: scaleY(0.1); }
+}
+
+/* ═══════════════════════════════════════════════════
+   ACCESSIBILITY — Reduced Motion
+   ═══════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .wave,
+  .successWave,
+  .headTilt,
+  .blinkEye,
+  .bubble1,
+  .bubble2,
+  .bubble3,
+  .bubble4 {
+    animation: none !important;
+  }
+
+  .rightArm {
+    transition: none;
+  }
+
+  .headGroup {
+    transition: none;
+  }
+}

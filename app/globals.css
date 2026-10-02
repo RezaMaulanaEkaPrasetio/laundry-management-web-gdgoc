@@ -1,0 +1,329 @@
+@import "tailwindcss";
+
+@theme {
+  /* ===== Brand & PRD v2.0 Design System Tokens ===== */
+  --color-primary: #1677FF;
+  --color-accent: #22C7D9;
+  --color-navy: #172B4D;
+  --color-white: #FFFFFF;
+
+  --color-success: #34A853;
+  --color-warning: #FBBC04;
+  --color-danger: #EA4335;
+
+  --color-text: #172B4D;
+  --color-muted: #6B7280;
+  --color-border: #E5E7EB;
+  --color-surface: #F8FAFC;
+
+  /* ===== Backward-compatible Material Design 3 Tokens mapped to Brand ===== */
+  --color-on-primary-fixed: #001a41;
+  --color-error-container: #fee2e2;
+  --color-inverse-on-surface: #f3f0ef;
+  --color-on-primary-fixed-variant: #004493;
+  --color-surface-container-high: #eae7e7;
+  --color-on-background: #172B4D;
+  --color-on-primary-container: #ffffff;
+  --color-on-secondary-fixed: #002108;
+  --color-inverse-primary: #adc7ff;
+  --color-inverse-surface: #172B4D;
+  --color-surface-container: #f0eded;
+  --color-tertiary-fixed: #ffdfa0;
+  --color-on-error-container: #991b1b;
+  --color-surface-dim: #dcd9d9;
+  --color-on-surface-variant: #6B7280;
+  --color-on-secondary: #ffffff;
+  --color-tertiary: #795900;
+  --color-on-error: #ffffff;
+  --color-on-tertiary: #ffffff;
+  --color-secondary: #16A34A;
+  --color-primary-fixed-dim: #adc7ff;
+  --color-on-secondary-fixed-variant: #005320;
+  --color-primary-fixed: #dbeafe;
+  --color-on-tertiary-fixed-variant: #5c4300;
+  --color-surface-variant: #f1f5f9;
+  --color-primary-container: #1677FF;
+  --color-on-primary: #ffffff;
+  --color-on-tertiary-fixed: #261a00;
+  --color-secondary-fixed-dim: #bbf7d0;
+  --color-surface-tint: #1677FF;
+  --color-background: #F8FAFC;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-secondary-container: #166534;
+  --color-tertiary-fixed-dim: #fbbc04;
+  --color-error: #EA4335;
+  --color-on-surface: #172B4D;
+  --color-outline-variant: #E5E7EB;
+  --color-surface-container-low: #f8fafc;
+  --color-outline: #6B7280;
+  --color-surface-container-highest: #e2e8f0;
+  --color-secondary-container: #dcfce7;
+  --color-surface-bright: #ffffff;
+  --color-secondary-fixed: #dcfce7;
+  --color-on-tertiary-container: #ffffff;
+  --color-tertiary-container: #fef08a;
+
+  /* ===== Spacing ===== */
+  --spacing-gutter: 1rem;
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-margin: 1.5rem;
+
+  /* ===== Font Family ===== */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+  --font-headline-sm: "Plus Jakarta Sans", sans-serif;
+  --font-display-scale-weight: "Plus Jakarta Sans", sans-serif;
+  --font-label-lg: "Plus Jakarta Sans", sans-serif;
+  --font-label-sm: "Plus Jakarta Sans", sans-serif;
+  --font-body-lg: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+  --font-body-md: "Plus Jakarta Sans", sans-serif;
+  --font-headline-md: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg-mobile: "Plus Jakarta Sans", sans-serif;
+  --font-body-sm: "Plus Jakarta Sans", sans-serif;
+  --font-label-md: "Plus Jakarta Sans", sans-serif;
+
+  /* ===== Font Size ===== */
+  --font-size-headline-sm: 20px;
+  --font-size-display-scale-weight: 48px;
+  --font-size-label-lg: 14px;
+  --font-size-label-sm: 11px;
+  --font-size-body-lg: 16px;
+  --font-size-headline-lg: 32px;
+  --font-size-body-md: 14px;
+  --font-size-headline-md: 24px;
+  --font-size-headline-lg-mobile: 24px;
+  --font-size-body-sm: 12px;
+  --font-size-label-md: 12px;
+}
+
+:root {
+  --color-primary: #1677FF;
+  --color-accent: #22C7D9;
+  --color-navy: #172B4D;
+  --color-white: #FFFFFF;
+
+  --gradient-brand: linear-gradient(135deg, #1677FF 0%, #22C7D9 100%);
+
+  --color-success: #34A853;
+  --color-warning: #FBBC04;
+  --color-danger: #EA4335;
+
+  --color-text: #172B4D;
+  --color-muted: #6B7280;
+  --color-border: #E5E7EB;
+  --color-surface: #F8FAFC;
+}
+
+/* ===== Base Styles ===== */
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  main > :first-child {
+    margin-top: 0 !important;
+  }
+  main > :last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #F0F0F0 25%, #E0E0E0 50%, #F0F0F0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInSlideUp 350ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-wave-hand {
+  transform-origin: 70% 70%;
+  animation: wave 1.2s ease-in-out 2;
+}
+
+/* ===== Accessible Reduced Motion Fallback ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Scrollbar Hiding ===== */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ===== Card & Utility Styles ===== */
+.card-laundry {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  padding: 20px;
+  border: 1px solid #F0F0F0;
+}
+
+.btn-primary-brand {
+  background: linear-gradient(135deg, #1677FF 0%, #22C7D9 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 150ms ease;
+}
+.btn-primary-brand:hover {
+  filter: brightness(1.08);
+}
+.btn-primary-brand:active {
+  transform: scale(0.98);
+}
+
+/* Status Pill Helpers */
+.badge-status-MENUNGGU_PENJEMPUTAN { background-color: #EFF6FF; color: #1677FF; }
+.badge-status-SUDAH_DIJEMPUT       { background-color: #FFF7ED; color: #EA580C; }
+.badge-status-SEDANG_DICUCI        { background-color: #FFFBEB; color: #D97706; }
+.badge-status-SELESAI_DICUCI       { background-color: #F0FDF4; color: #16A34A; }
+.badge-status-SIAP_DIANTAR         { background-color: #EFF6FF; color: #1677FF; }
+.badge-status-MENUNGGU_PEMBAYARAN  { background-color: #FFF1F2; color: #E11D48; }
+.badge-status-SELESAI              { background-color: #F0FDF4; color: #15803D; }
+.badge-status-DIBATALKAN           { background-color: #FEF2F2; color: #DC2626; }
+
+/* ===== Typography Utility Classes ===== */
+@utility text-headline-sm {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+@utility text-display-scale-weight {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 800;
+}
+@utility text-label-lg {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+@utility text-label-sm {
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 700;
+}
+@utility text-body-lg {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+@utility text-headline-lg {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+}
+@utility text-body-md {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+@utility text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+}
+@utility text-headline-lg-mobile {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+@utility text-body-sm {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+@utility text-label-md {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+/* ===== Print Styles for Thermal Receipt (80mm) ===== */
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+  body {
+    width: 80mm;
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+    background: white !important;
+    color: black !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  #receipt-paper, #receipt-paper * {
+    visibility: visible;
+  }
+  #receipt-paper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 72mm !important;
+    max-width: 72mm !important;
+    padding: 4mm;
+    margin: 0;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  header, footer, nav {
+    display: none !important;
+  }
+}

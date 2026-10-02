@@ -1,0 +1,10 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/kurir/antar/page": "/kurir/antar",
+  "/kurir/page": "/kurir",
+  "/login/page": "/login",
+  "/page": "/",
+  "/petugas/page": "/petugas",
+  "/register/page": "/register"
+}

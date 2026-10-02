@@ -1,0 +1,10 @@
+{
+  "/_global-error/page": "app/_global-error/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/kurir/antar/page": "app/kurir/antar/page.js",
+  "/kurir/page": "app/kurir/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/petugas/page": "app/petugas/page.js",
+  "/register/page": "app/register/page.js"
+}
